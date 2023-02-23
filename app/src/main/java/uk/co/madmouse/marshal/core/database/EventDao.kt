@@ -11,9 +11,9 @@ import uk.co.madmouse.marshal.core.models.database.Event
 @Dao
 interface EventDao {
     @Query("SELECT * FROM ${Constants.TABLE_NAME_EVENTS} " +
-            "where ${Constants.FIELD_END_DATETIME} < :startDate " +
+            "where ${Constants.FIELD_END_DATETIME} < :currentDate " +
            " order by ${Constants.FIELD_START_DATETIME}")
-    fun events(startDate : Long): Flow<List<Event>>
+    fun events(currentDate : Long): Flow<List<Event>>
 
     @Query("SELECT * FROM ${Constants.TABLE_NAME_EVENTS} ")
     fun eventsAll(): Flow<List<Event>>
