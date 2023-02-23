@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Marshal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_events">Events</string>
+    <string name="menu_event">Event</string>
+
+    <string name="lbl_id">id</string>
+    <string name="lbl_description">Description</string>
+    <string name="lbl_startDate">Start Date</string>
+    <string name="lbl_endDate">End Date</string>
+    <string name="lbl_address">Address</string>
+    <string name="lbl_contact">contact</string>
+</resources>

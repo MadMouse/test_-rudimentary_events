@@ -1,0 +1,107 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'uk.co.madmouse.marshal'
+    compileSdk build_versions.compile_sdk
+
+    defaultConfig {
+        applicationId "uk.co.madmouse.marshal"
+        minSdk build_versions.min_sdk
+        targetSdk build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.dev'
+            buildConfigField "String", "BASE_URL", '"https://b0a3-82-13-3-27.eu.ngrok.io"'
+        }
+
+        release {
+            //TODO Update to production url.
+            buildConfigField "String", "BASE_URL", '"https://<replace with production url"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_9
+        targetCompatibility JavaVersion.VERSION_1_9
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$lib_versions.core_ktx"
+    implementation "androidx.appcompat:appcompat:$lib_versions.appcompat"
+    implementation "com.google.android.material:material:$lib_versions.material"
+
+    implementation("androidx.room:room-runtime:$lib_versions.room")
+    implementation("androidx.room:room-ktx:$lib_versions.room")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt("androidx.room:room-compiler:$lib_versions.room")
+
+    implementation("androidx.constraintlayout:constraintlayout:$lib_versions.constraintLayout")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lib_versions.lifecycle_livedata_ktx")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lib_versions.lifecycle_viewmodel_ktx")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:$lib_versions.navigation_fragment_ktx")
+    implementation("androidx.navigation:navigation-ui-ktx:$lib_versions.navigation_ui_ktx")
+
+    implementation "androidx.compose.runtime:runtime-livedata:$lib_versions.composeVersion"
+    implementation "androidx.compose.ui:ui:$lib_versions.composeVersion"
+    implementation "androidx.compose.ui:ui-util:$lib_versions.composeVersion"
+    implementation "androidx.compose.ui:ui-tooling:$lib_versions.composeVersion"
+    implementation "androidx.compose.ui:ui-tooling-preview:$lib_versions.composeVersion"
+    implementation "androidx.compose.material:material:$lib_versions.composeMaterialVersion"
+    implementation "androidx.compose.material:material-icons-extended:$lib_versions.composeMaterialVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$lib_versions.retrofit2"
+    implementation "com.squareup.retrofit2:converter-gson:$lib_versions.retrofit2"
+    implementation "com.squareup.okhttp3:logging-interceptor:$lib_versions.httpOkLogging"
+
+    implementation "com.google.code.gson:gson:$lib_versions.gson"
+    implementation "org.apache.commons:commons-text:$lib_versions.commons_text"
+
+    implementation("com.google.dagger:hilt-android:$lib_versions.hilt")
+    kapt("com.google.dagger:hilt-android-compiler:$lib_versions.hilt")
+
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    testImplementation "io.mockk:mockk-android:$test_versions.mockk"
+    testImplementation "io.mockk:mockk-agent:$test_versions.mockk"
+
+    testImplementation "junit:junit:$test_versions.junit"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$test_versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:$test_versions.coroutines"
+    testImplementation "com.google.truth:truth:$test_versions.google_truth"
+
+    testAnnotationProcessor "com.google.dagger:hilt-android-compiler:$test_versions.hilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$test_versions.hilt"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$test_versions.hilt"
+
+    testImplementation "org.powermock:powermock-module-junit4:$test_versions.power_mock"
+    testImplementation "org.powermock:powermock-core:$test_versions.power_mock"
+    testImplementation "org.powermock:powermock-api-mockito2:$test_versions.power_mock"
+    testImplementation "org.mockito:mockito-core:$test_versions.mockito"
+
+    androidTestImplementation "androidx.test.ext:junit:$test_versions.androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$test_versions.androidx_espresso_core"
+    androidTestImplementation "androidx.arch.core:core-testing:$test_versions.core_testing"
+}
